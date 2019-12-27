@@ -1,0 +1,95 @@
+#include<iostream>
+#include<stdexcept>
+
+using namespace std;
+class queue
+{
+ int rear,front,a[5];
+	public:
+ 	queue()
+	{
+	  front=0;
+	  rear=0;
+	}
+ 	 void add(int x)
+	 {
+		if(Isfull())
+		{  cout<<"in full";
+			throw runtime_error("Queue is full");
+			rear=(rear+1)%5;
+
+		}
+		else
+		{
+
+		 a[rear]=x;
+	         cout<<a[rear];
+		
+		 
+		}
+	   
+	 }
+	 
+	 int del()
+	 {
+		 if(IsEmpty())
+		 {
+			 throw runtime_error("Queue is empty");
+			//cout<<"full";
+			front=(front+1)%5;
+		  }
+		 else{
+		 
+         int ele=a[front];
+         
+	 return ele;
+		 }
+	 
+	 }
+
+
+	bool Isfull()
+	{
+	  return((rear+1)==front);
+
+	}
+	bool IsEmpty()
+	{
+	  return (front==rear);
+	}
+
+
+};
+int main()
+{
+ queue q;
+ try{
+ 
+ q.add(11);
+ q.add(12);
+ q.add(13);
+ q.add(14);
+ q.add(15);
+
+int y= q.del();
+cout<<y;
+int z= q.del();
+cout<<z;
+q.add(11);
+q.add(12);
+ //q.del();
+ //q.del();
+ //q.del();
+// q.del();
+// q.del();
+//q.del(); 
+ 
+//int y= q.del();
+ 
+ }
+catch (runtime_error e)
+ {
+	 e.what();
+ }
+return 0;
+}
